@@ -23,7 +23,7 @@ const ReviewCard: FC<Props> = ({ rating, text, user, createdAt }) => {
             className={`flex w-[220px] gap-3 px-3 py-3 font-sans shadow sm:w-[460px] sm:gap-12 sm:px-6 sm:py-12 ${roboto.variable}`}
         >
             <div className="min-h-[35px] min-w-[35px] rounded-full bg-primary sm:min-h-[94px] sm:min-w-[94px]"></div>
-            <div className="flex flex-col justify-between">
+            <div className="flex w-full flex-col justify-between">
                 <div className="flex">
                     {_.range(rating).map((_, index) => (
                         <Star
@@ -40,7 +40,7 @@ const ReviewCard: FC<Props> = ({ rating, text, user, createdAt }) => {
                     <div className="text-[8px] leading-tight text-neutral-900 sm:text-xs">
                         {`${user.name} ${user.surname}`}
                     </div>
-                    <div className="self-end text-[8px] leading-tight text-slate-600 sm:text-xs">
+                    <div className="text-[8px] leading-tight text-slate-600 sm:text-xs">
                         {`${createdAt.getDay()}.${createdAt.getMonth()}.${createdAt.getFullYear()}`}
                     </div>
                 </div>
