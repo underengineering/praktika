@@ -8,7 +8,7 @@ import PersonOutlined from "@mui/icons-material/PersonOutlined";
 
 const Header = () => {
     return (
-        <header className="flex w-full justify-between px-2 py-3 sm:px-0 sm:py-12">
+        <header className="flex w-full justify-between px-2 py-3 sm:px-36 sm:py-12">
             <div className="flex w-full justify-between">
                 <Menu
                     className="hidden sm:inline-block"

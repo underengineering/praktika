@@ -1,12 +1,13 @@
 import { Bad_Script, Roboto } from "next/font/google";
 import Image from "next/image";
-import { useState } from "react";
 
+import ArrowButton from "@/components/ArrowButton";
 import Button from "@/components/Button";
 import Carousel from "@/components/Carousel";
 import CatalogButton from "@/components/CatalogButton";
 import ChatButton from "@/components/ChatButton";
 import Faq from "@/components/Faq";
+import Input from "@/components/Input";
 import ProductCard from "@/components/ProductCard";
 import ReviewCard from "@/components/ReviewCard";
 import UpButton from "@/components/UpButton";
@@ -35,7 +36,7 @@ const badScript = Bad_Script({
 const Section1 = () => {
     return (
         <section
-            className={`flex flex-col gap-7 ${roboto.variable} ${badScript.variable}`}
+            className={`flex flex-col gap-7 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} ${badScript.variable}`}
         >
             <div className="flex justify-between gap-8 sm:gap-0">
                 <div className="flex flex-col gap-7 sm:gap-14">
@@ -46,7 +47,7 @@ const Section1 = () => {
                         height="3872"
                         alt=""
                     />
-                    <div className="flex flex-wrap justify-center">
+                    <div className="flex flex-wrap justify-center sm:justify-start">
                         <span
                             className={`text-center font-sans text-6xl font-light leading-[52.38px] text-stone-50 sm:text-start sm:text-neutral-900`}
                         >
@@ -100,7 +101,7 @@ const Section2 = () => {
 
     return (
         <section
-            className={`flex flex-col gap-24 ${roboto.variable} font-sans font-light`}
+            className={`flex flex-col gap-24 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} font-sans font-light`}
         >
             <span className="text-center text-[25px] leading-[34.92px] text-neutral-900 sm:text-start sm:text-[40px]">
                 Почему выбирают нас?
@@ -219,9 +220,9 @@ const Section3 = () => {
 
     return (
         <section
-            className={`flex flex-col gap-16 font-sans text-[25px] font-light sm:text-[40px] ${roboto.variable} ${badScript.variable}`}
+            className={`flex flex-col gap-16 p-2 py-16 font-sans text-[25px] font-light sm:py-0 sm:text-[40px] ${roboto.variable} ${badScript.variable}`}
         >
-            <div className="flex justify-center text-center sm:text-start">
+            <div className="flex justify-center text-center sm:px-36 sm:text-start">
                 <span className="leading-[34.92px] text-neutral-900">
                     Успей купить!
                 </span>
@@ -247,7 +248,7 @@ const Section3 = () => {
                     ))}
                 </div>
             </Carousel>
-            <div className="flex flex-wrap justify-around gap-4 sm:hidden">
+            <div className="flex flex-wrap justify-around gap-4 sm:hidden sm:px-36">
                 {products.slice(0, 4).map((product, index) => (
                     <ProductCard
                         name={product.name}
@@ -265,9 +266,9 @@ const Section3 = () => {
 
 const Section4 = () => {
     return (
-        <div className="flex flex-col gap-8">
+        <section className="flex flex-col gap-8 sm:px-36">
             <div
-                className={`py-8 text-[40px] font-light leading-[34.92px] text-neutral-900 ${roboto.variable} font-sans`}
+                className={`p-2 py-16 text-[40px] font-light leading-[34.92px] text-neutral-900 sm:px-36 sm:py-0 ${roboto.variable} font-sans`}
             >
                 Отзывы наших покупателей
             </div>
@@ -280,14 +281,14 @@ const Section4 = () => {
             <Button className="hidden self-start sm:block">
                 Добавить отзыв
             </Button>
-        </div>
+        </section>
     );
 };
 
 const Section5 = () => {
     return (
         <div
-            className={`flex flex-col gap-16 ${roboto.variable} ${badScript.variable} font-sans`}
+            className={`flex flex-col gap-16 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} ${badScript.variable} font-sans`}
         >
             <div className="flex gap-4">
                 <span className="text-[40px] font-light leading-[34.92px] text-neutral-900">
@@ -359,7 +360,9 @@ const Section6 = () => {
     ];
 
     return (
-        <div className={`flex flex-col gap-16 ${roboto.variable} font-sans`}>
+        <section
+            className={`flex flex-col gap-16 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} font-sans`}
+        >
             <span className="text-center text-[40px] font-light leading-[34.92px] text-neutral-900 sm:self-start sm:text-start">
                 Сотрудничество с нами
             </span>
@@ -398,6 +401,47 @@ const Section6 = () => {
                     </div>
                 ))}
             </div>
+        </section>
+    );
+};
+
+const Section7 = () => {
+    return (
+        <div
+            className={`w-full bg-primary px-2 py-9 sm:w-4/6 sm:px-32 sm:py-10 ${roboto.variable} font-sans`}
+        >
+            <div className="flex flex-col gap-8 bg-stone-50 px-12 py-9 sm:gap-10">
+                <div className="text-center text-xs leading-normal text-neutral-900 sm:text-start sm:text-xl">
+                    Приглашаем к сотрудничеству производителей и поставщиков
+                    одежды, обуви и аксессуаров
+                </div>
+                <form method="POST" className="flex flex-col gap-6">
+                    <Input type="text" placeholder="Ваше имя" name="name" />
+                    <Input
+                        type="text"
+                        placeholder="Номер телефона"
+                        name="phone"
+                    />
+                    <Input
+                        type="password"
+                        placeholder="Электронная почта"
+                        name="password"
+                    />
+                    <div className="flex items-center gap-1">
+                        <input
+                            className="h-3 min-h-[0.75rem] w-3 min-w-[0.75rem] appearance-none rounded-full border border-primary transition-colors checked:bg-primary"
+                            type="checkbox"
+                            name="accept"
+                        />
+                        <div className="text-xs font-thin leading-[9.44px] text-zinc-500 sm:text-sm">
+                            Даю согласие на обработку персональных данных
+                        </div>
+                    </div>
+                    <ArrowButton className="mt-10 w-48" type="submit">
+                        Отправить
+                    </ArrowButton>
+                </form>
+            </div>
         </div>
     );
 };
@@ -405,13 +449,14 @@ const Section6 = () => {
 export default function Home() {
     return (
         <main className="flex flex-col">
-            <div className="flex flex-col gap-36 py-16 sm:py-0">
+            <div className="flex flex-col gap-36">
                 <Section1 />
                 <Section2 />
                 <Section3 />
                 <Section4 />
                 <Section5 />
                 <Section6 />
+                <Section7 />
             </div>
         </main>
     );
