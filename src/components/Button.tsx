@@ -14,7 +14,7 @@ const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
 }) => {
     return (
         <button
-            className={`bg-primary px-[25px] py-[14px] text-sm text-stone-50 transition-[padding] hover:px-[25px] hover:py-[16px] active:px-[25px] active:py-[16px] ${
+            className={`bg-primary px-[25px] py-[14px] text-sm text-stone-50 transition-transform hover:scale-110 active:scale-110 ${
                 roboto.variable
             } font-sans ${className !== undefined ? className : ""}`}
             {...props}
