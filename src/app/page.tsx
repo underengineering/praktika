@@ -287,7 +287,7 @@ const Section4 = () => {
 
 const Section5 = () => {
     return (
-        <div
+        <section
             className={`flex flex-col gap-16 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} ${badScript.variable} font-sans`}
         >
             <div className="flex gap-4">
@@ -299,7 +299,7 @@ const Section5 = () => {
                 </span>
             </div>
             <Faq />
-        </div>
+        </section>
     );
 };
 
@@ -407,7 +407,7 @@ const Section6 = () => {
 
 const Section7 = () => {
     return (
-        <div
+        <section
             className={`w-full bg-primary px-2 py-9 sm:w-4/6 sm:px-32 sm:py-10 ${roboto.variable} font-sans`}
         >
             <div className="flex flex-col gap-8 bg-stone-50 px-12 py-9 sm:gap-10">
@@ -442,7 +442,7 @@ const Section7 = () => {
                     </ArrowButton>
                 </form>
             </div>
-        </div>
+        </section>
     );
 };
 
