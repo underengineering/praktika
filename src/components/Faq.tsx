@@ -25,10 +25,7 @@ const Faq = () => {
         },
     ];
 
-    const [activeQuestion, setActiveQuestion] = useState<number | undefined>(
-        undefined
-    );
-
+    const [activeIndices, setActiveIndices] = useState<number[]>([]);
     return (
         <div className={`flex flex-col gap-6 ${roboto.variable} font-sans`}>
             {texts.map((text, index) => (
@@ -36,17 +33,21 @@ const Faq = () => {
                     <button
                         className="flex justify-between"
                         onClick={() =>
-                            activeQuestion === index
-                                ? setActiveQuestion(undefined)
-                                : setActiveQuestion(index)
+                            activeIndices.includes(index)
+                                ? setActiveIndices(
+                                      activeIndices.filter(
+                                          (idx) => idx !== index
+                                      )
+                                  )
+                                : setActiveIndices([index, ...activeIndices])
                         }
                     >
                         <span className="text-xl text-neutral-900">
                             {text.q}
                         </span>
-                        {activeQuestion === index ? <Close /> : <Add />}
+                        {activeIndices.includes(index) ? <Close /> : <Add />}
                     </button>
-                    {activeQuestion === index ? (
+                    {activeIndices.includes(index) ? (
                         text.a
                     ) : (
                         <div className="border border-zinc-500"></div>
