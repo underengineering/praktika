@@ -432,13 +432,17 @@ const InviteForm = () => {
                     />
                     <div className="flex items-center gap-1">
                         <input
+                            id="accept"
                             className="h-3 min-h-[0.75rem] w-3 min-w-[0.75rem] appearance-none rounded-full border border-primary transition-colors checked:bg-primary"
                             type="checkbox"
                             name="accept"
                         />
-                        <div className="text-xs font-thin leading-[9.44px] text-zinc-500 sm:text-sm">
+                        <label
+                            className="text-xs font-thin leading-[9.44px] text-zinc-500 sm:text-sm"
+                            htmlFor="accept"
+                        >
                             Даю согласие на обработку персональных данных
-                        </div>
+                        </label>
                     </div>
                     <ArrowButton className="mt-10 w-48" type="submit">
                         Отправить
