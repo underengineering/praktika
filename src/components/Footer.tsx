@@ -9,6 +9,8 @@ import {
     Telegram,
 } from "@mui/icons-material";
 
+import UpButton from "./UpButton";
+
 const roboto = Roboto({
     weight: "400",
     subsets: ["cyrillic"],
@@ -44,39 +46,30 @@ const Footer = () => {
                 </span>
             ),
         },
-        {
-            title: "Соц. сети",
-            html: (
-                <div className="flex flex-col gap-7">
-                    <div className="flex gap-3">
-                        <Telegram className="fill-stone-50" />
-                        <Instagram className="fill-stone-50" />
-                        <Mail className="fill-stone-50" />
-                    </div>
-                    <div className="flex gap-3">
-                        <LocalPhoneOutlined className="fill-stone-50" />
-                        <span className="text-xs font-light text-stone-50">
-                            +375255990755
-                        </span>
-                    </div>
-                    <div className="flex gap-3">
-                        <AccessTimeOutlined className="fill-stone-50" />
-                        <span className="text-xs font-light text-stone-50">
-                            круглосуточно, без выходных
-                        </span>
-                    </div>
-                </div>
-            ),
-        },
+        {},
     ];
 
     return (
         <footer
-            className={`flex flex-col bg-primary p-2 sm:flex-row sm:p-20 ${roboto.variable} font-sans`}
+            className={`flex flex-col bg-primary p-2 pb-7 sm:flex-row sm:p-20 ${roboto.variable} font-sans`}
         >
+            <Image
+                className="inline h-[40px] w-[40px] object-contain sm:hidden"
+                src="/logo.png"
+                width={128}
+                height={128}
+                alt=""
+            />
             <div className="flex grow justify-around">
+                <div className="flex flex-col gap-5 sm:hidden">
+                    {footer.map((data, index) => (
+                        <span className="text-xl text-stone-50" key={index}>
+                            {data.title}
+                        </span>
+                    ))}
+                </div>
                 {footer.map((data, index) => (
-                    <div className="flex flex-col gap-5" key={index}>
+                    <div className="hidden flex-col gap-5 sm:flex" key={index}>
                         <span className="text-xl text-stone-50">
                             {data.title}
                         </span>
@@ -94,9 +87,36 @@ const Footer = () => {
                         </div>
                     </div>
                 ))}
+                <div className="flex flex-col gap-5">
+                    <span className="text-xl text-stone-50">Соц. сети</span>
+                    <div className="flex flex-col gap-7">
+                        <div className="flex gap-3">
+                            <Telegram className="fill-stone-50" />
+                            <Instagram className="fill-stone-50" />
+                            <Mail className="fill-stone-50" />
+                        </div>
+                        <div className="flex gap-3">
+                            <LocalPhoneOutlined className="hidden fill-stone-50 sm:inline" />
+                            <span className="text-xs font-light text-stone-50">
+                                +375255990755
+                            </span>
+                        </div>
+                        <div className="flex gap-3">
+                            <AccessTimeOutlined className="hidden fill-stone-50 sm:inline" />
+                            <span className="text-xs font-light text-stone-50">
+                                круглосуточно, без выходных
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <UpButton
+                    className="inline self-end bg-stone-50 sm:hidden"
+                    iconClassName="fill-primary"
+                    size={29}
+                />
             </div>
             <Image
-                className="object-contain"
+                className="hidden object-contain sm:inline"
                 src="/logo.png"
                 width={128}
                 height={128}
