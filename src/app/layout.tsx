@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="flex w-full flex-col gap-36 bg-stone-50">
+            <body className="flex w-full flex-col gap-0 bg-stone-50 sm:gap-36">
                 <div className="flex flex-col">
                     <Header />
                     {children}

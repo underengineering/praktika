@@ -168,7 +168,7 @@ const About = () => {
                 </div>
             </Carousel>
             <div className="flex justify-between">
-                <UpButton />
+                <UpButton iconClassName="fill-stone-50" />
                 <ChatButton />
             </div>
         </section>
