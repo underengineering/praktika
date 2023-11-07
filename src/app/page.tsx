@@ -73,7 +73,7 @@ const Section1 = () => {
                     </span>
                 </div>
                 <Image
-                    className="hidden h-[416px] w-[476px] shadow sm:inline"
+                    className="hidden h-full max-h-[416px] w-full max-w-[476px] object-contain shadow sm:inline"
                     src="/main2.jpg"
                     width="476"
                     height="416"
