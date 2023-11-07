@@ -509,7 +509,7 @@ const Footer = () => {
     ];
 
     return (
-        <div
+        <footer
             className={`flex flex-col bg-primary p-2 sm:flex-row sm:p-20 ${roboto.variable} font-sans`}
         >
             <div className="flex grow justify-around">
@@ -540,23 +540,25 @@ const Footer = () => {
                 height={128}
                 alt=""
             />
-        </div>
+        </footer>
     );
 };
 
 export default function Home() {
     return (
-        <main className="flex flex-col">
-            <div className="flex flex-col gap-36">
-                <Welcome />
-                <About />
-                <Products />
-                <Reviews />
-                <FaqSection />
-                <Cooperation />
-                <InviteForm />
-                <Footer />
-            </div>
-        </main>
+        <div className="flex flex-col gap-36">
+            <main className="flex flex-col">
+                <div className="flex flex-col gap-36">
+                    <Welcome />
+                    <About />
+                    <Products />
+                    <Reviews />
+                    <FaqSection />
+                    <Cooperation />
+                    <InviteForm />
+                </div>
+            </main>
+            <Footer />
+        </div>
     );
 }
