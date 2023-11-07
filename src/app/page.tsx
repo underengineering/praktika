@@ -8,20 +8,15 @@ import CatalogButton from "@/components/CatalogButton";
 import ChatButton from "@/components/ChatButton";
 import Faq from "@/components/Faq";
 import Input from "@/components/Input";
-import ProductCard from "@/components/ProductCard";
-import ReviewCard from "@/components/ReviewCard";
+import ProductCarousel from "@/components/ProductCarousel";
+import ReviewCarousel from "@/components/ReviewCarousel";
 import UpButton from "@/components/UpButton";
 import {
-    AccessTimeOutlined,
     AccountBalanceOutlined,
     Circle,
     FormatListBulletedOutlined,
     GroupsOutlined,
-    Instagram,
-    LocalPhoneOutlined,
-    Mail,
     SettingsOutlined,
-    Telegram,
 } from "@mui/icons-material";
 
 const roboto = Roboto({
@@ -176,51 +171,6 @@ const About = () => {
 };
 
 const Products = () => {
-    const products = [
-        {
-            name: "Блузка женская классная",
-            price: 65,
-            discountedPrice: 50,
-            rating: 4,
-            favorited: false,
-        },
-        {
-            name: "Блузка мужская базированная",
-            price: 65,
-            discountedPrice: 50,
-            rating: 4,
-            favorited: false,
-        },
-        {
-            name: "Блузка моя базированная",
-            price: 65,
-            discountedPrice: 50,
-            rating: 4,
-            favorited: false,
-        },
-        {
-            name: "Блузка моя базированная",
-            price: 65,
-            discountedPrice: 50,
-            rating: 4,
-            favorited: false,
-        },
-        {
-            name: "Блузка моя базированная",
-            price: 65,
-            discountedPrice: 50,
-            rating: 4,
-            favorited: false,
-        },
-        {
-            name: "Блузка моя базированная",
-            price: 65,
-            discountedPrice: 50,
-            rating: 4,
-            favorited: false,
-        },
-    ];
-
     return (
         <section
             className={`flex flex-col gap-16 p-2 py-16 font-sans text-[25px] font-light sm:py-0 sm:text-[40px] ${roboto.variable} ${badScript.variable}`}
@@ -234,35 +184,7 @@ const Products = () => {
                     Акции
                 </span>
             </div>
-            <Carousel className="hidden sm:flex">
-                <div
-                    className={`flex grow gap-20 ${roboto.variable} font-sans`}
-                >
-                    {products.map((product, index) => (
-                        <ProductCard
-                            className="shrink-0 grow-0"
-                            name={product.name}
-                            price={product.price}
-                            discountedPrice={product.discountedPrice}
-                            rating={product.rating}
-                            favorited={product.favorited}
-                            key={index}
-                        />
-                    ))}
-                </div>
-            </Carousel>
-            <div className="flex flex-wrap justify-around gap-4 sm:hidden sm:px-36">
-                {products.slice(0, 4).map((product, index) => (
-                    <ProductCard
-                        name={product.name}
-                        price={product.price}
-                        discountedPrice={product.discountedPrice}
-                        rating={product.rating}
-                        favorited={product.favorited}
-                        key={index}
-                    />
-                ))}
-            </div>
+            <ProductCarousel />
         </section>
     );
 };
@@ -275,12 +197,7 @@ const Reviews = () => {
             >
                 Отзывы наших покупателей
             </div>
-            <ReviewCard
-                rating={5}
-                text="Платье село отлично"
-                user={{ name: "Анна", surname: "Котловановна" }}
-                createdAt={new Date()}
-            />
+            <ReviewCarousel />
             <Button className="hidden self-start sm:block">
                 Добавить отзыв
             </Button>

@@ -11,18 +11,28 @@ const roboto = Roboto({
 });
 
 interface Props {
+    className?: string;
+
     rating: number;
     text: string;
     user: { name: string; surname: string };
     createdAt: Date;
 }
 
-const ReviewCard: FC<Props> = ({ rating, text, user, createdAt }) => {
+const ReviewCard: FC<Props> = ({
+    className,
+    rating,
+    text,
+    user,
+    createdAt,
+}) => {
     return (
         <div
-            className={`flex w-[220px] gap-3 px-3 py-3 font-sans shadow sm:w-[460px] sm:gap-12 sm:px-6 sm:py-12 ${roboto.variable}`}
+            className={`flex w-[220px] gap-3 px-3 py-3 font-sans shadow sm:w-[460px] sm:gap-12 sm:px-6 sm:py-12 ${
+                roboto.variable
+            } ${className !== undefined ? className : ""}`}
         >
-            <div className="min-h-[35px] min-w-[35px] rounded-full bg-primary sm:min-h-[94px] sm:min-w-[94px]"></div>
+            <div className="h-full max-h-[35px] w-full max-w-[35px] self-center rounded-full bg-primary sm:max-h-[94px] sm:max-w-[94px]"></div>
             <div className="flex w-full flex-col justify-between">
                 <div className="flex">
                     {_.range(rating).map((_, index) => (
