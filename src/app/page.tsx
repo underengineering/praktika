@@ -36,7 +36,7 @@ const badScript = Bad_Script({
     variable: "--font-script",
 });
 
-const Section1 = () => {
+const Welcome = () => {
     return (
         <section
             className={`flex flex-col gap-7 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} ${badScript.variable}`}
@@ -88,7 +88,7 @@ const Section1 = () => {
     );
 };
 
-const Section2 = () => {
+const About = () => {
     const whyUs = [
         [
             "Скидки постоянным клиентам от 5%",
@@ -175,7 +175,7 @@ const Section2 = () => {
     );
 };
 
-const Section3 = () => {
+const Products = () => {
     const products = [
         {
             name: "Блузка женская классная",
@@ -267,7 +267,7 @@ const Section3 = () => {
     );
 };
 
-const Section4 = () => {
+const Reviews = () => {
     return (
         <section className="flex flex-col gap-8 sm:px-36">
             <div
@@ -288,7 +288,7 @@ const Section4 = () => {
     );
 };
 
-const Section5 = () => {
+const FaqSection = () => {
     return (
         <section
             className={`flex flex-col gap-16 p-2 py-16 sm:px-36 sm:py-0 ${roboto.variable} ${badScript.variable} font-sans`}
@@ -306,7 +306,7 @@ const Section5 = () => {
     );
 };
 
-const Section6 = () => {
+const Cooperation = () => {
     const texts = [
         [
             "Становитесь партнером",
@@ -408,7 +408,7 @@ const Section6 = () => {
     );
 };
 
-const Section7 = () => {
+const InviteForm = () => {
     return (
         <section
             className={`w-full bg-primary px-2 py-9 sm:w-4/6 sm:px-32 sm:py-10 ${roboto.variable} font-sans`}
@@ -449,7 +449,7 @@ const Section7 = () => {
     );
 };
 
-const Section8 = () => {
+const Footer = () => {
     const footer = [
         {
             title: "Информация",
@@ -544,14 +544,14 @@ export default function Home() {
     return (
         <main className="flex flex-col">
             <div className="flex flex-col gap-36">
-                <Section1 />
-                <Section2 />
-                <Section3 />
-                <Section4 />
-                <Section5 />
-                <Section6 />
-                <Section7 />
-                <Section8 />
+                <Welcome />
+                <About />
+                <Products />
+                <Reviews />
+                <FaqSection />
+                <Cooperation />
+                <InviteForm />
+                <Footer />
             </div>
         </main>
     );
