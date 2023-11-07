@@ -24,6 +24,28 @@ export interface IReview<TStatus = TDeserialized> {
     createdAt: DateSerializeable<TStatus>;
 }
 
+export interface ISearchQuery {
+    type?: string;
+    sex?: "male" | "female";
+    ageGt?: number;
+    ageLt?: number;
+    size?: string;
+    hasDiscount?: boolean;
+}
+
+export function buildSearchParams(query: ISearchQuery) {
+    const url = new URLSearchParams();
+    if (query.type !== undefined) url.set("type", query.type);
+    if (query.sex !== undefined) url.set("sex", query.sex);
+    if (query.ageGt !== undefined) url.set("ageGt", query.ageGt.toString());
+    if (query.ageLt !== undefined) url.set("ageLt", query.ageLt.toString());
+    if (query.size !== undefined) url.set("size", query.size);
+    if (query.hasDiscount !== undefined)
+        url.set("hasDiscount", query.hasDiscount.toString());
+
+    return url;
+}
+
 export interface IDatabase<TStatus = TDeserialized> {
     products: IProduct[];
     reviews: IReview<TStatus>[];
