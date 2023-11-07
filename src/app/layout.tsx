@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 
 import "./globals.css";
@@ -16,9 +17,12 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="w-full bg-stone-50">
-                <Header />
-                {children}
+            <body className="flex w-full flex-col gap-36 bg-stone-50">
+                <div className="flex flex-col">
+                    <Header />
+                    {children}
+                </div>
+                <Footer />
             </body>
         </html>
     );
