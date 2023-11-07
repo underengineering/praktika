@@ -423,9 +423,9 @@ const Section7 = () => {
                         name="phone"
                     />
                     <Input
-                        type="password"
+                        type="email"
                         placeholder="Электронная почта"
-                        name="password"
+                        name="email"
                     />
                     <div className="flex items-center gap-1">
                         <input
