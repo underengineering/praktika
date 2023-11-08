@@ -10,7 +10,9 @@ const roboto = Roboto({
 const CatalogButton: FC<{ className?: string }> = ({ className }) => {
     return (
         <button
-            className={`group flex h-[193px] w-[193px] flex-col items-center justify-center gap-4 rounded-full border border-primary bg-primary shadow-primary transition-[background-color,box-shadow] hover:bg-primary hover:shadow-2xl active:bg-primary active:shadow-2xl sm:bg-primary sm:bg-transparent ${className}`}
+            className={`group flex h-[193px] w-[193px] flex-col items-center justify-center gap-4 rounded-full border border-primary bg-primary shadow-primary transition-[background-color,box-shadow] hover:bg-primary hover:shadow-2xl active:bg-primary active:shadow-2xl sm:bg-transparent ${
+                className !== undefined ? className : ""
+            }`}
         >
             <span
                 className={`mr-9 h-3.5 w-[79px] text-xl text-stone-50 transition-colors group-hover:text-stone-50 group-active:text-stone-50 sm:text-primary ${roboto.variable} font-sans`}
