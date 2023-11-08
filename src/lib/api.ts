@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export type TSerialized = { __brand: "serialized" };
 export type TDeserialized = { __brand: "deserialized" };
@@ -22,6 +22,12 @@ export interface IReview<TStatus = TDeserialized> {
     text: string;
     user: { name: string; surname: string };
     createdAt: DateSerializeable<TStatus>;
+}
+
+export interface IUser {
+    fullName: string;
+    phone: string;
+    email: string;
 }
 
 export interface ISearchQuery {
@@ -49,9 +55,38 @@ export function buildSearchParams(query: ISearchQuery) {
     return url;
 }
 
+export function parseSearchQuery(params: URLSearchParams): ISearchQuery {
+    const searchQuery: ISearchQuery = {};
+
+    const type = params.get("type");
+    if (type !== null) searchQuery.type = type;
+
+    const sex = params.get("sex");
+    if (sex !== null && (sex === "male" || sex === "female"))
+        searchQuery.sex = sex;
+
+    const ageGt = params.get("ageGt");
+    if (ageGt !== null) searchQuery.ageGt = +ageGt;
+
+    const ageLt = params.get("ageLt");
+    if (ageLt !== null) searchQuery.ageLt = +ageLt;
+
+    const size = params.get("size");
+    if (size !== null) searchQuery.size = size;
+
+    const hasDiscount = params.get("hasDiscount");
+    if (hasDiscount !== null) searchQuery.hasDiscount = hasDiscount === "true";
+
+    const favorited = params.get("favorited");
+    if (favorited !== null) searchQuery.favorited = favorited === "true";
+
+    return searchQuery;
+}
+
 export interface IDatabase<TStatus = TDeserialized> {
     products: IProduct[];
     reviews: IReview<TStatus>[];
+    users: IUser[];
 }
 
 const database: IDatabase = {
@@ -119,6 +154,7 @@ const database: IDatabase = {
             createdAt: new Date(),
         },
     ],
+    users: [],
 };
 
 function serialize(database: IDatabase<TDeserialized>): IDatabase<TSerialized> {
@@ -157,16 +193,51 @@ function getDatabaseData(): IDatabase {
 // should be used only in client components
 export function useDatabase(): [
     IDatabase | undefined,
-    Dispatch<SetStateAction<IDatabase>>,
+    (db: IDatabase) => void,
 ] {
     const [db, setDb] = useState<IDatabase | undefined>();
-    useEffect(() => setDb(getDatabaseData()), []);
     useEffect(() => {
-        // Not loaded yet
+        setDb(getDatabaseData());
+    }, []);
+
+    const updateDb = (db: IDatabase) => {
+        console.log("SAVE DB", db);
+        localStorage.setItem("db", JSON.stringify(db));
+        setDb(db);
+    };
+
+    return [db, updateDb];
+}
+
+export function useUser(): [
+    IUser | undefined,
+    (email: string | undefined) => void,
+] {
+    const [db, _] = useDatabase();
+    const [user, setUser] = useState<IUser | undefined>();
+    useEffect(() => {
         if (db === undefined) return;
 
-        localStorage.setItem("db", JSON.stringify(db));
+        const userIdx = localStorage.getItem("userIdx");
+        if (userIdx === null) return;
+
+        setUser(db.users[+userIdx]);
     }, [db]);
 
-    return [db, setDb as Dispatch<SetStateAction<IDatabase>>];
+    const updateUser = (email: string | undefined) => {
+        if (db === undefined) return;
+        if (email === undefined) {
+            setUser(undefined);
+            localStorage.removeItem("userIdx");
+            return;
+        }
+
+        const userIdx = db.users.findIndex((user) => user.email === email);
+        if (userIdx === -1) return;
+
+        localStorage.setItem("userIdx", userIdx.toString());
+        setUser(db.users[userIdx]);
+    };
+
+    return [user, updateUser];
 }

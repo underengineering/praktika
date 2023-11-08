@@ -12,6 +12,8 @@ import {
 } from "@mui/icons-material";
 import PersonOutlined from "@mui/icons-material/PersonOutlined";
 
+import UserMenu from "./UserMenu";
+
 const roboto = Roboto({
     weight: "400",
     subsets: ["latin", "cyrillic"],
@@ -20,6 +22,7 @@ const roboto = Roboto({
 
 const Header = () => {
     const [sideBarOpened, setSideBarOpened] = useState(false);
+    const [userMenuOpened, setUserMenuOpened] = useState(false);
     return (
         <header
             className={`flex w-full flex-col justify-between px-2 py-3 sm:px-36 sm:py-12 ${
@@ -42,8 +45,19 @@ const Header = () => {
                             type="text"
                         />
                     </div>
-                    <div className="hidden gap-3 sm:flex">
-                        <PersonOutlined />
+                    <div className="relative hidden gap-3 sm:flex">
+                        <button
+                            onClick={() => setUserMenuOpened(!userMenuOpened)}
+                        >
+                            <PersonOutlined />
+                        </button>
+                        {userMenuOpened ? (
+                            <div className="absolute mt-8">
+                                <UserMenu />
+                            </div>
+                        ) : (
+                            <></>
+                        )}
                         <FavoriteBorderOutlined />
                         <ShoppingBagOutlined />
                     </div>

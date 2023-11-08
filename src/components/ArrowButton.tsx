@@ -14,7 +14,7 @@ const ArrowButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
 }) => {
     return (
         <button
-            className={`group hidden items-center gap-2 border border-neutral-900 px-6 py-3 text-sm text-primary transition-colors hover:bg-primary hover:text-stone-50 active:bg-primary active:text-stone-50 sm:flex ${
+            className={`group flex items-center gap-2 border border-neutral-900 bg-primary px-6 py-3 text-sm text-primary shadow-primary transition-colors hover:bg-primary hover:text-stone-50 hover:shadow-md active:bg-primary active:text-stone-50 active:shadow-md sm:bg-transparent ${
                 className !== undefined ? className : ""
             }`}
         >
@@ -24,7 +24,7 @@ const ArrowButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
                 {children}
             </span>
             <svg
-                className="fill-primary transition-colors group-hover:fill-stone-50 group-active:fill-stone-50"
+                className="fill-stone-50 transition-colors group-hover:fill-stone-50 group-active:fill-stone-50 sm:fill-primary"
                 width="26"
                 height="4"
                 viewBox="0 0 26 4"

@@ -6,6 +6,7 @@ import Button from "@/components/Button";
 import Carousel from "@/components/Carousel";
 import CatalogButton from "@/components/CatalogButton";
 import ChatButton from "@/components/ChatButton";
+import Checkbox from "@/components/Checkbox";
 import Faq from "@/components/Faq";
 import Input from "@/components/Input";
 import ProductCarousel from "@/components/ProductCarousel";
@@ -348,12 +349,7 @@ const InviteForm = () => {
                         name="email"
                     />
                     <div className="flex items-center gap-1">
-                        <input
-                            id="accept"
-                            className="h-3 min-h-[0.75rem] w-3 min-w-[0.75rem] appearance-none rounded-full border border-primary transition-colors checked:bg-primary"
-                            type="checkbox"
-                            name="accept"
-                        />
+                        <Checkbox id="accept" name="accept" />
                         <label
                             className="text-xs font-thin leading-[9.44px] text-zinc-500 sm:text-sm"
                             htmlFor="accept"
