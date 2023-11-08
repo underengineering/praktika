@@ -31,6 +31,7 @@ export interface ISearchQuery {
     ageLt?: number;
     size?: string;
     hasDiscount?: boolean;
+    favorited?: boolean;
 }
 
 export function buildSearchParams(query: ISearchQuery) {
@@ -42,6 +43,8 @@ export function buildSearchParams(query: ISearchQuery) {
     if (query.size !== undefined) url.set("size", query.size);
     if (query.hasDiscount !== undefined)
         url.set("hasDiscount", query.hasDiscount.toString());
+    if (query.favorited !== undefined)
+        url.set("favorited", query.favorited.toString());
 
     return url;
 }

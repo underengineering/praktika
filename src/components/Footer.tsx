@@ -1,3 +1,5 @@
+"use client";
+
 import { Roboto } from "next/font/google";
 import Image from "next/image";
 
@@ -9,6 +11,7 @@ import {
     Telegram,
 } from "@mui/icons-material";
 
+import MobileNavBar from "./MobileNavBar";
 import UpButton from "./UpButton";
 
 const roboto = Roboto({
@@ -122,6 +125,7 @@ const Footer = () => {
                 height={128}
                 alt=""
             />
+            <MobileNavBar onMenu={() => {}} />
         </footer>
     );
 };
