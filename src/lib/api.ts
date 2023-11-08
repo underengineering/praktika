@@ -147,12 +147,6 @@ const database: IDatabase = {
             user: { name: "Анна", surname: "Котловановна" },
             createdAt: new Date(),
         },
-        {
-            rating: 1,
-            text: "Купила блузку, а она кал, топором бы переебать ее создателя!)",
-            user: { name: "Анна", surname: "Котловановна" },
-            createdAt: new Date(),
-        },
     ],
     users: [],
 };
