@@ -73,8 +73,8 @@ const Welcome = () => {
                 <Image
                     className="hidden h-full max-h-[416px] w-full max-w-[476px] object-contain shadow sm:inline"
                     src="/main2.jpg"
-                    width="476"
-                    height="416"
+                    width="1080"
+                    height="720"
                     alt=""
                 />
             </div>
