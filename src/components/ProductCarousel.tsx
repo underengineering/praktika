@@ -25,6 +25,7 @@ const ProductCarousel = () => {
                         db.products.map((product, index) => (
                             <ProductCard
                                 className="shrink-0 grow-0"
+                                idx={index}
                                 {...product}
                                 key={index}
                             />
@@ -39,14 +40,7 @@ const ProductCarousel = () => {
                     db.products
                         .slice(0, 4)
                         .map((product, index) => (
-                            <ProductCard
-                                name={product.name}
-                                price={product.price}
-                                discountedPrice={product.discountedPrice}
-                                rating={product.rating}
-                                favorited={product.favorited}
-                                key={index}
-                            />
+                            <ProductCard idx={index} {...product} key={index} />
                         ))
                 ) : (
                     <></>

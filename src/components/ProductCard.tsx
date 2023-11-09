@@ -1,6 +1,7 @@
 import _ from "lodash";
 import { FC } from "react";
 
+import { useDatabase } from "@/lib/api";
 import {
     Favorite,
     FavoriteBorderOutlined,
@@ -11,6 +12,7 @@ import {
 interface Props {
     className?: string;
 
+    idx: number;
     name: string;
     price: number;
     discountedPrice?: number;
@@ -20,12 +22,15 @@ interface Props {
 
 const ProductCard: FC<Props> = ({
     className,
+    idx,
     name,
     price,
     discountedPrice,
     rating,
     favorited,
 }) => {
+    const [db, setDb] = useDatabase();
+
     return (
         <div
             className={`flex w-[150px] flex-col font-sans sm:w-[278px] ${
@@ -50,7 +55,17 @@ const ProductCard: FC<Props> = ({
                     {name}
                 </div>
                 <div className="flex">
-                    {favorited ? <Favorite /> : <FavoriteBorderOutlined />}
+                    <button
+                        onClick={() => {
+                            if (db === undefined) return;
+
+                            db.products[idx].favorited = true;
+                            setDb(db);
+                        }}
+                    >
+                        {" "}
+                        {favorited ? <Favorite /> : <FavoriteBorderOutlined />}
+                    </button>
                     <ShoppingBagOutlined />
                 </div>
             </div>

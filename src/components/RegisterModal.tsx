@@ -28,10 +28,13 @@ const RegisterModal: FC<Props> = ({ onClose, onLogin }) => {
     const [fullAddress, setFullAddress] = useState("");
     const [email, setEmail] = useState("");
     const [comment, setComment] = useState("");
+    const [accept, setAccept] = useState(false);
 
     const [db, setDb] = useDatabase();
     const onRegister = useCallback(() => {
         if (db === undefined) return;
+        if (!accept) return;
+        console.log("ACEC", accept);
 
         const user: IUser = {
             fullName,
@@ -41,7 +44,7 @@ const RegisterModal: FC<Props> = ({ onClose, onLogin }) => {
 
         setDb({ ...db, users: [...db.users, user] });
         onLogin();
-    }, [db, setDb, email, fullName, phone, onLogin]);
+    }, [db, setDb, email, fullName, phone, accept, onLogin]);
 
     return (
         <div
@@ -52,7 +55,12 @@ const RegisterModal: FC<Props> = ({ onClose, onLogin }) => {
                     <div className="text-3xl font-light leading-[34.92px] text-neutral-900">
                         Регистрация
                     </div>
-                    <form onSubmit={onRegister}>
+                    <form
+                        onSubmit={(ev) => {
+                            ev.preventDefault();
+                            onRegister();
+                        }}
+                    >
                         <div className="flex flex-col gap-8">
                             <div className="flex flex-col gap-8 sm:flex-row sm:gap-32">
                                 <div className="flex flex-col gap-8">
@@ -111,7 +119,14 @@ const RegisterModal: FC<Props> = ({ onClose, onLogin }) => {
                                 </div>
                             </div>
                             <div className="flex gap-1">
-                                <Checkbox id="accept" name="accept" />
+                                <Checkbox
+                                    id="accept"
+                                    name="accept"
+                                    value={accept ? "1" : "0"}
+                                    onChange={(ev) => {
+                                        setAccept(ev.currentTarget.checked);
+                                    }}
+                                />
                                 <label
                                     className="text-thin text-[8px] text-zinc-500"
                                     htmlFor="accept"

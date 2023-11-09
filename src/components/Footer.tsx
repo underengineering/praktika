@@ -125,7 +125,7 @@ const Footer = () => {
                 height={128}
                 alt=""
             />
-            <MobileNavBar onMenu={() => {}} />
+            <MobileNavBar />
         </footer>
     );
 };

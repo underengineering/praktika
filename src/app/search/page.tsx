@@ -7,7 +7,6 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Checkbox from "@/components/Checkbox";
 import Dropdown from "@/components/Dropdown";
 import ProductCard from "@/components/ProductCard";
 import RadioButton from "@/components/RadioButton";
@@ -35,34 +34,41 @@ export default function Search() {
         }[]
     >([{ name: "Главная", href: "/" }]);
 
-    const [products, setProducts] = useState<IProduct[]>([]);
+    const [products, setProducts] = useState<(IProduct & { idx: number })[]>(
+        []
+    );
 
     const searchParams = useSearchParams();
     const query = useMemo(() => parseSearchQuery(searchParams), [searchParams]);
     useEffect(() => {
         if (db === undefined) return;
 
-        const newProducts = db.products.filter((product) => {
-            let matches = true;
-            if (query.name) matches &&= product.name.includes(query.name);
+        const newProducts = db.products
+            .map((product, index) => ({ ...product, idx: index }))
+            .filter((product) => {
+                let matches = true;
+                if (query.name) matches &&= product.name.includes(query.name);
 
-            if (query.hasDiscount !== undefined)
-                matches &&=
-                    query.hasDiscount && product.discountedPrice !== undefined;
+                if (query.hasDiscount !== undefined)
+                    matches &&=
+                        query.hasDiscount &&
+                        product.discountedPrice !== undefined;
 
-            if (query.tags !== undefined)
-                matches &&= _.reduce(
-                    product.tags,
-                    (acc, tag) => acc && query.tags!.includes(tag),
-                    false
-                );
+                if (query.tags !== undefined)
+                    matches &&= _.reduce(
+                        product.tags,
+                        (acc, tag) => acc && query.tags!.includes(tag),
+                        false
+                    );
 
-            const price = product.discountedPrice ?? product.price;
-            if (query.priceGt !== undefined) matches &&= price > query.priceGt;
-            if (query.priceLt !== undefined) matches &&= price < query.priceLt;
+                const price = product.discountedPrice ?? product.price;
+                if (query.priceGt !== undefined)
+                    matches &&= price > query.priceGt;
+                if (query.priceLt !== undefined)
+                    matches &&= price < query.priceLt;
 
-            return matches;
-        });
+                return matches;
+            });
 
         if (query.sort === "price") {
             console.log("bober");
@@ -121,8 +127,8 @@ export default function Search() {
                         <></>
                     )}
                 </span>
-                <div className="flex gap-10">
-                    <div className="flex shrink-0 flex-col gap-16">
+                <div className="flex flex-col gap-10 sm:flex-row">
+                    <div className="flex shrink-0 flex-col sm:gap-16">
                         <span className="text-xl text-zinc-500">
                             Сортировать по:
                         </span>
@@ -215,7 +221,7 @@ export default function Search() {
                         </div>
                     </div>
                     <div className="flex flex-col gap-9">
-                        <div className="flex gap-9 text-xl text-neutral-900">
+                        <div className="flex flex-col text-xl text-neutral-900 sm:flex-row sm:gap-9">
                             {[
                                 ["Популярности", "popularity"],
                                 ["Рейтингу", "rating"],

@@ -14,10 +14,12 @@ import {
 
 import LoginModal from "./LoginModal";
 import RegisterModal from "./RegisterModal";
+import SideBar from "./SideBar";
 
-const MobileNavBar: FC<{ onMenu: () => void }> = ({ onMenu }) => {
+const MobileNavBar = () => {
     const [loginModalOpened, setLoginModalOpened] = useState(false);
     const [registerModalOpened, setRegisterModalOpened] = useState(false);
+    const [sideBarOpened, setSideBarOpened] = useState(false);
     return (
         <>
             <div className="fixed bottom-0 left-0 z-50 mb-auto flex w-full justify-around bg-primary py-4 sm:hidden">
@@ -45,7 +47,7 @@ const MobileNavBar: FC<{ onMenu: () => void }> = ({ onMenu }) => {
                     className="fill-stone-50"
                     sx={{ fontSize: 25 }}
                 />
-                <button onClick={onMenu}>
+                <button onClick={() => setSideBarOpened(!sideBarOpened)}>
                     <MenuOutlined
                         className="fill-stone-50"
                         sx={{ fontSize: 25 }}
@@ -74,6 +76,7 @@ const MobileNavBar: FC<{ onMenu: () => void }> = ({ onMenu }) => {
             ) : (
                 <></>
             )}
+            {sideBarOpened ? <SideBar /> : <></>}
         </>
     );
 };
