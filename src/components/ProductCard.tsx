@@ -51,11 +51,12 @@ const ProductCard: FC<Props> = ({
                 )}
             </div>
             <div className="flex justify-between">
-                <div className="text-ellipsis text-[10px] text-zinc-500 sm:text-xs">
+                <span className="text-ellipsis text-[10px] text-zinc-500 sm:text-xs">
                     {name}
-                </div>
+                </span>
                 <div className="flex">
                     <button
+                        className="flex justify-start"
                         onClick={() => {
                             if (db === undefined) return;
 
