@@ -1,9 +1,10 @@
 import { Roboto } from "next/font/google";
+import Link from "next/link";
 import { useState } from "react";
 
 import LoginModal from "@/components/LoginModal";
 import RegisterModal from "@/components/RegisterModal";
-import { useUser } from "@/lib/api";
+import { buildSearchParams, useUser } from "@/lib/api";
 import {
     FavoriteBorderOutlined,
     LogoutOutlined,
@@ -70,12 +71,15 @@ const UserMenu = () => {
                 </span>
             </div>
             <div className="w-full border border-zinc-500"></div>
-            <div className="flex items-center gap-3">
+            <Link
+                className="flex items-center gap-3"
+                href={`/search?${buildSearchParams({ favorited: true })}`}
+            >
                 <FavoriteBorderOutlined />
                 <span className="text-xs font-light leading-[14.16px] text-neutral-900">
                     Избранное
                 </span>
-            </div>
+            </Link>
             <div className="flex items-center gap-3">
                 <VisibilityOutlined />
                 <span className="text-xs font-light leading-[14.16px] text-neutral-900">

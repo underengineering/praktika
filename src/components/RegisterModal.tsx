@@ -125,7 +125,7 @@ const RegisterModal: FC<Props> = ({ onClose, onLogin }) => {
                                     Отправить
                                 </ArrowButton>
                                 <button
-                                    className="self-center border border-primary px-9 py-2 text-sm text-neutral-900 shadow shadow-primary"
+                                    className="self-center border border-primary px-6 py-3 text-sm text-neutral-900 shadow shadow-primary"
                                     onClick={onLogin}
                                 >
                                     Войти в кабинет

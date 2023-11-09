@@ -17,6 +17,7 @@ const ArrowButton: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
             className={`group flex items-center gap-2 border border-neutral-900 bg-primary px-6 py-3 text-sm text-primary shadow-primary transition-colors hover:bg-primary hover:text-stone-50 hover:shadow-md active:bg-primary active:text-stone-50 active:shadow-md sm:bg-transparent ${
                 className !== undefined ? className : ""
             }`}
+            {...props}
         >
             <span
                 className={`text-xl text-stone-50 transition-colors group-hover:text-stone-50 group-active:text-stone-50 sm:text-primary ${roboto.variable} font-sans`}

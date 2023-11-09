@@ -1,5 +1,4 @@
 import _ from "lodash";
-import { Roboto } from "next/font/google";
 import { FC } from "react";
 
 import {

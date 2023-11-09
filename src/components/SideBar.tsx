@@ -1,9 +1,11 @@
+"use client";
+
 import { Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { ISearchQuery, buildSearchParams } from "@/lib/api";
+import { ISearchQuery, buildSearchParams, useDatabase } from "@/lib/api";
 
 const roboto = Roboto({
     weight: "400",
@@ -12,32 +14,50 @@ const roboto = Roboto({
 });
 
 const SideBar = () => {
+    const [db, _] = useDatabase();
+
     type TLink = { title: string; query: ISearchQuery };
     const links: TLink[] = [
         { title: "Женщинам", query: { sex: "female" } },
         { title: "Мужчинам", query: { sex: "male" } },
         { title: "Детям", query: { ageLt: 18 } },
-        { title: "Обувь", query: { type: "shoes" } },
-        { title: "Игрушки", query: { type: "toys" } },
-        { title: "Аксессуары", query: { type: "accessories" } },
+        { title: "Обувь", query: { tags: ["shoes"] } },
+        { title: "Игрушки", query: { tags: ["toys"] } },
+        { title: "Аксессуары", query: { tags: ["accessories"] } },
         { title: "Большие размеры", query: { size: "XL" } },
         { title: "Акции", query: { hasDiscount: true } },
     ];
 
     type TType = { name: string; query: ISearchQuery };
-    const types: TType[] = [
-        { name: "Майки", query: { type: "tshirt" } },
-        { name: "Костюмы", query: { type: "costume" } },
-        { name: "Брюки", query: { type: "trousers" } },
-        { name: "Джинсы", query: { type: "jeans" } },
-        { name: "Юбки", query: { type: "skirt" } },
-        { name: "Шорты", query: { type: "shorts" } },
-        { name: "Свитшоты, худи", query: { type: "hoody" } },
-        { name: "Блузки и рубашки", query: { type: "blouses" } },
-        { name: "Пиджаки и жакеты", query: { type: "jacket" } },
-        { name: "Платья и сарафаны", query: { type: "dress" } },
-        { name: "Верхняя одежда", query: { type: "outerwear" } },
-    ];
+    const [types, setTypes] = useState<TType[] | undefined>();
+
+    useEffect(() => {
+        if (db === undefined) return;
+
+        const typeNames = [
+            "tshirt",
+            "costume",
+            "trousers",
+            "jeans",
+            "skirt",
+            "shorts",
+            "hoody",
+            "blouses",
+            "jacket",
+            "dress",
+            "outerwear",
+        ];
+
+        const newTypes = [];
+        for (const name of typeNames) {
+            const tag = db.tags.find((tag) => tag.name === name);
+            if (tag === undefined) throw new Error(`Tag '${name}' not found`);
+
+            newTypes.push({ name: tag.displayName, query: { tags: [name] } });
+        }
+
+        setTypes(newTypes);
+    }, [db]);
 
     const [activeIdx, setActiveIdx] = useState<number | undefined>();
     return (
@@ -69,7 +89,7 @@ const SideBar = () => {
                         </li>
                     ))}
                 </ol>
-                {activeIdx !== undefined ? (
+                {activeIdx !== undefined && types !== undefined ? (
                     <ol className="flex flex-col gap-5">
                         {types.map((type, index) => (
                             <li

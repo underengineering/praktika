@@ -66,13 +66,13 @@ const LoginModal: FC<Props> = ({ onClose, onRegister }) => {
                             </Link>
                             <div className="flex gap-11">
                                 <button
-                                    className="self-center border border-primary bg-primary px-9 py-2 text-sm text-stone-50 shadow shadow-primary"
+                                    className="self-center border border-primary bg-primary px-6 py-3 text-sm text-stone-50 shadow shadow-primary"
                                     type="submit"
                                 >
                                     Войти в кабинет
                                 </button>
                                 <button
-                                    className="self-center border border-primary px-9 py-2 text-sm text-neutral-900 shadow shadow-primary"
+                                    className="self-center border border-primary px-6 py-3 text-sm text-neutral-900 shadow shadow-primary"
                                     onClick={onRegister}
                                 >
                                     Регистрация
